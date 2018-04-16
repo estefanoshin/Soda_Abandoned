@@ -26,3 +26,7 @@ Route::get('/storage/app/public/{filename}', ['uses' => 'ProductController@retri
 Route::get('/formProduct', 'ProductController@create')->name('products');
 
 Route::post('/formProduct', 'ProductController@store');
+
+Route::post('/home', 'ProductController@store');
+
+Route::get('/home', 'HomeController@index')->name('home');

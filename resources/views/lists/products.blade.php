@@ -1,25 +1,27 @@
-<table border="1" id="products">
-    <thead>
-        <tr>
-            <th>Imagen</th>
-            <th>Articulo</th>
-            <th>Tela</th>
-            <th>Color</th>
-            <th>Talle</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        @foreach ( $productos as $producto )
-        <tr>
-            @if (Storage::disk('local')->has($producto->img))
-            <td><img class="img-fluid" src="{{ route('image', ['filename' => $producto->img]) }}"></td>
+<section id="productos">
+<div class="card-columns">
+    @foreach ( $productos as $producto )
+<div class="card-deck-wrapper">
+        <div class="card">
+        @if (Storage::disk('local')->has($producto->img))
+        <img class="card-img-top" src="{{ route('image', ['filename' => $producto->img]) }}" alt="Card image cap">
+        @endif
+          <div class="card-body">
+            <h5 class="card-title">{{ $producto->articulo }}</h5>
+            <h5 class="card-title">{{ $producto->descripcion }}</h5>
+            <p class="card-text">{{ $producto->tipo_tela}}</p>
+            <p class="card-text">{{ $producto->colores}}</p>
+            <p class="card-text">{{ $producto->talles }}</p>
+            @if (Route::has('login'))
+            @auth
+            <a href="#" class="btn btn-dark">Modificar</a>
+            <a href="#" class="btn btn-dark">Borrar</a>
+            @else
+            @endauth
             @endif
-            <td>{{ $producto->articulo }}</td>
-            <td>{{ $producto->tipo_tela }}</td>
-            <td>{{ $producto->colores }}</td>
-            <td>{{ $producto->talles }}</td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
+          </div>
+        </div>
+    </div>
+    @endforeach
+</div>
+</section>

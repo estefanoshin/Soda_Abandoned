@@ -75,14 +75,35 @@ html, body {
     position: fixed;
     bottom: 0px;
     right: 0px;
-}
-
-#products{
-    width: 100%;
-    height: auto;
-    box-sizing: content-box;
+    z-index: 1;
+    opacity: .75;
 }
 
 #image{
     width: 100%;
+}
+
+/*#productos{
+    width: 100%;
+}*/
+
+.card{
+    width: 18rem;
+    margin: 0.3%;
+}
+
+/*@media screen and (min-width: 800px){
+    #productos{
+        display: inline-flex;
+    }
+}*/
+
+.card-columns {
+    @include media-breakpoint-only(lg) {
+    column-count: 4;
+    }
+
+    @include media-breakpoint-only(xl) {
+    column-count: 5;
+    }
 }

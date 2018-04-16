@@ -45,6 +45,7 @@ class ProductController extends Controller
         //
 
         $articulo = $request->input('articulo');
+        $descripcion = $request->input('descripcion');
         $tipo_tela = $request->input('tipo_tela');
         $talles = $request->input('talles');
         $colores = $request->input('colores');
@@ -55,7 +56,7 @@ class ProductController extends Controller
             Storage::disk('local')->put($filename, File::get($image));
         }
 
-        $data = array( 'articulo'=>$articulo, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename);
+        $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename);
 
         DB::table('productos')->insert($data);
 
@@ -88,6 +89,9 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         //
+        $product = (isset($_GET['id_art'])) ? $_GET['id_art'] : null;
+        $data =  DB::table('productos')->select('*')->where([[ 'id_art', '=', $product]])->get();
+        return view( 'formProduct', ['datos' => $data] );
     }
 
     /**
@@ -111,5 +115,10 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+
+        //Also need to add: delete the image
+
+        DB::table('productos')->where([[ 'id_art', '=', $product]])->delete();
+        return \Redirect::to('/');
     }
 }

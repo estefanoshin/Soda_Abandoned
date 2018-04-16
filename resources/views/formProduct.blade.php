@@ -8,6 +8,7 @@
 	<div class="row">
 		<div class="col">
 			<input class="form-control btn btn-outline-secondary" type="text" name="articulo" placeholder="Ingrese un Articulo" required>
+			<input class="form-control btn btn-outline-secondary" type="text" name="descripcion" placeholder="Ingrese detalle del articulo" required>
 			<input class="form-control btn btn-outline-secondary" type="text" name="talles" placeholder="Ingrese Talles" required>
 		</div>
 		<div class="col">
