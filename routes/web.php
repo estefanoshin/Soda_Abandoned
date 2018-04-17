@@ -27,6 +27,12 @@ Route::get('/formProduct', 'ProductController@create')->name('products');
 
 Route::post('/formProduct', 'ProductController@store');
 
+Route::get('/destroy/{destroy_id}', ['as'=> 'destroy', 'uses'=>'ProductController@destroy']);
+
+Route::get('/edit/{edit_id}', ['as'=> 'edit', 'uses'=>'ProductController@edit']);
+
+Route::post('/edit', 'ProductController@update')->name('update');
+
 Route::post('/home', 'ProductController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');

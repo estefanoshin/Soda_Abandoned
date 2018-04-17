@@ -2,7 +2,7 @@
 <div class="card-columns">
     @foreach ( $productos as $producto )
 <div class="card-deck-wrapper">
-        <div class="card">
+        <div class="card" style="width: 18rem">
         @if (Storage::disk('local')->has($producto->img))
         <img class="card-img-top" src="{{ route('image', ['filename' => $producto->img]) }}" alt="Card image cap">
         @endif
@@ -14,8 +14,8 @@
             <p class="card-text">{{ $producto->talles }}</p>
             @if (Route::has('login'))
             @auth
-            <a href="#" class="btn btn-dark">Modificar</a>
-            <a href="#" class="btn btn-dark">Borrar</a>
+            <a href="{{ route('edit', ['edit_id' => $producto->id_art]) }}" class="btn btn-dark">Modificar</a>
+            <a href="{{ route('destroy', ['destroy_id' => $producto->id_art]) }}" class="btn btn-dark">Borrar</a>
             @else
             @endauth
             @endif

@@ -52,7 +52,7 @@ class ProductController extends Controller
 
         if ($request->hasFile('img')) {
             $image = $request->file('img');
-            $filename = $image->getClientOriginalName();
+            $filename = md5($articulo.$tipo_tela.$image->getClientOriginalName());
             Storage::disk('local')->put($filename, File::get($image));
         }
 
@@ -86,12 +86,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product)
+    public function edit($product)
     {
         //
-        $product = (isset($_GET['id_art'])) ? $_GET['id_art'] : null;
         $data =  DB::table('productos')->select('*')->where([[ 'id_art', '=', $product]])->get();
-        return view( 'formProduct', ['datos' => $data] );
+        return view( 'updateProduct', ['datos' => $data] );
     }
 
     /**
@@ -101,9 +100,29 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request)
     {
         //
+        $articulo = $request->input('articulo');
+        $descripcion = $request->input('descripcion');
+        $tipo_tela = $request->input('tipo_tela');
+        $talles = $request->input('talles');
+        $colores = $request->input('colores');
+        $id_art = $request->input('id_art');
+
+        if ($request->hasFile('img')) {
+            $image = $request->file('img');
+            $filename = md5($articulo.$tipo_tela.$image->getClientOriginalName());
+            Storage::disk('local')->put($filename, File::get($image));
+        } else {
+            $filename = 'no_image';
+        }
+
+        $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename);
+
+        DB::table('productos')->where([[ 'id_art', '=', $id_art ]])->update($data);
+
+        return \Redirect::to('/');
     }
 
     /**
@@ -112,13 +131,16 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product)
+    public function destroy($product)
     {
         //
+        $producto =  DB::table('productos')->select('*')->where([[ 'id_art', '=', $product]])->first();        
+        
+        if (Storage::disk('local')->has($producto->img)){
+            Storage::delete($producto->img);
+            DB::table('productos')->where([[ 'id_art', '=', $product]])->delete();
+        }
 
-        //Also need to add: delete the image
-
-        DB::table('productos')->where([[ 'id_art', '=', $product]])->delete();
         return \Redirect::to('/');
     }
 }
