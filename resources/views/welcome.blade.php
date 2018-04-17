@@ -14,7 +14,7 @@
 
                     @endauth
                 @endif
-                    <a href="https://github.com/laravel/laravel">Información</a>
+                    <a href="{{ url('/info') }}">Información</a>
                 </div>
 </footer>
             </div>

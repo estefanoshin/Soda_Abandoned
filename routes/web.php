@@ -36,3 +36,5 @@ Route::post('/edit', 'ProductController@update')->name('update');
 Route::post('/home', 'ProductController@store');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/info', 'InfoController@index')->name('info');
