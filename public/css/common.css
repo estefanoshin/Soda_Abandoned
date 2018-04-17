@@ -83,16 +83,12 @@ html, body {
     width: 100%;
 }
 
-/*#productos{
-    width: 100%;
-}*/
-
 .card{
     margin: 0.3rem;
 }
 
-/*@media screen and (min-width: 800px){
-    #productos{
-        display: inline-flex;
+@media screen and (min-width: 1200px){
+    #banner{
+        width: 50rem;
     }
-}*/
+}
