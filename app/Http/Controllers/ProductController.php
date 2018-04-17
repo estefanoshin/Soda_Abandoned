@@ -109,13 +109,16 @@ class ProductController extends Controller
         $talles = $request->input('talles');
         $colores = $request->input('colores');
         $id_art = $request->input('id_art');
+        $prev_img = $request->input('prev_img');
 
         if ($request->hasFile('img')) {
+            Storage::delete($prev_img);
+
             $image = $request->file('img');
             $filename = md5($articulo.$tipo_tela.$image->getClientOriginalName());
             Storage::disk('local')->put($filename, File::get($image));
         } else {
-            $filename = 'no_image';
+            $filename = $prev_img;
         }
 
         $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename);
@@ -138,8 +141,9 @@ class ProductController extends Controller
         
         if (Storage::disk('local')->has($producto->img)){
             Storage::delete($producto->img);
-            DB::table('productos')->where([[ 'id_art', '=', $product]])->delete();
         }
+
+        DB::table('productos')->where([[ 'id_art', '=', $product]])->delete();
 
         return \Redirect::to('/');
     }
