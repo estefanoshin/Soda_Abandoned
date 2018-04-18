@@ -14,7 +14,10 @@ Todas sus prendas son exclusivas y estudiadas cuidadosamente por medio de un pro
 
 SODA representa la filosofía y la esencia de la feminidad.
     </p>
-    <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+    
+    <p class="card-text"><small class="text-muted">email : sodacasual@gmail.com</small></p>
+    <p class="card-text"><small class="text-muted">cel : +54 9 11 5754-6842</small></p>
+    <p class="card-text"><small class="text-muted">visite nuestro facebook : @sodacasualfashion</small></p>
   </div>
 </div>
 
