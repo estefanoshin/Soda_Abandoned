@@ -50,7 +50,14 @@
 				placeholder="Ingrese Colores"
 				value="{{ $dato->colores }}"
 				required>
+			<input
+				class="form-control btn btn-outline-secondary"
+				type="text"
+				name="precio"
+				placeholder="Ingrese Precio"
+				value="{{ $dato->precio }}">
 		</div>
+
 		<input type="text" name="id_art" value="{{ $dato->id_art }}" hidden>
 		<input type="text" name="prev_img" value="{{ $dato->img }}" hidden>
 	</div>

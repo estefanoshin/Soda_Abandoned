@@ -14,6 +14,7 @@
 		<div class="col">
 			<input class="form-control btn btn-outline-secondary" type="text" name="tipo_tela" placeholder="Ingrese un Tipo de Tela" required>
 			<input class="form-control btn btn-outline-secondary" type="text" name="colores" placeholder="Ingrese Colores" required>
+			<input class="form-control btn btn-outline-secondary" type="text" name="precio" placeholder="Ingrese Precio">
 		</div>
 	</div>
 

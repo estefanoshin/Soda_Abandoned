@@ -1,7 +1,7 @@
 @extends('layouts.app')
 @section('content')
 
-<div class="card mb-3">
+<div id="infocard" class="card mb-3">
   <img id="banner" class="card-img-top" src="soda_banner.jpg" alt="Card image cap">
   <div class="card-body">
     <h5 class="card-title">Soda Casual Fashion</h5>

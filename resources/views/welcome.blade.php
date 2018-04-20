@@ -1,11 +1,11 @@
 @extends('layouts.app')
 @section('content')
-        <div class=" position-ref ">
-            <div class="content">
+        <div class="position-ref">
+            <div id="welcome" class="content">
                     <h1 class="title">Soda</h1>
-                    <h2>Casual Fashion</h2>
+                    <h2 class="subtitle">Casual Fashion</h2>
 
-<footer id="footer" class="navbar navbar-expand-md navbar-light navbar-laravel">
+<footer id="footer" class="navbar navbar-expand-md bg-dark navbar-laravel">
                 @if (Route::has('login'))
                 <div class="links">
                     @auth

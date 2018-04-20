@@ -4,7 +4,9 @@
 <div class="card-deck-wrapper">
         <div class="card" style="width: 18rem">
         @if (Storage::disk('local')->has($producto->img))
-        <img class="card-img-top" src="{{ route('image', ['filename' => $producto->img]) }}" alt="Card image cap">
+        <div id="img-container">
+            <img id="prod-img" class="card-img-top" src="{{ route('image', ['filename' => $producto->img]) }}" alt="Card image cap">
+        </div>
         @endif
           <div class="card-body">
             <h5 class="card-title">{{ $producto->articulo }}</h5>
@@ -12,6 +14,14 @@
             <p class="card-text">{{ $producto->tipo_tela}}</p>
             <p class="card-text">{{ $producto->colores}}</p>
             <p class="card-text">{{ $producto->talles }}</p>
+
+            @if (Route::has('login'))
+            @auth
+            <p class="card-text">${{ $producto->precio }}</p>
+            @else
+            @endauth
+            @endif
+
             @if (Route::has('login'))
             @auth
             <a href="{{ route('edit', ['edit_id' => $producto->id_art]) }}" class="btn btn-dark">Modificar</a>

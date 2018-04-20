@@ -32,11 +32,22 @@ html, body {
 }
 
 .title {
-    font-size: 84px;
+    font-size: 7em;
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    /*font-weight: bold;*/
+    /*color: #9A53C3;*/
+}
+
+.subtitle {
+    font-family: "Courier New", Courier, "Lucida Sans Typewriter", "Lucida Typewriter", monospace;
+    /*font-weight: bold;*/
+    /*color: #9A53C3;*/
+    /*border: thin;*/
+    /*border-color: black*/
 }
 
 .links > a {
-    color: #636b6f;
+    color: white;
     padding: 0 25px;
     font-size: 12px;
     font-weight: 600;
@@ -83,11 +94,45 @@ html, body {
     width: 100%;
 }
 
+#infocard{
+    align-items: center;
+}
+
 .card{
     margin: 0.3rem;
 }
 
-@media screen and (min-width: 1200px){
+#img-container{
+    height: 22rem;
+    vertical-align: middle;
+    display: table-cell;
+}
+
+#prod-img{
+    overflow: hidden;
+}
+
+.card-deck-wrapper{
+    
+}
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 768px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 4;
+    }
+
     #banner{
         width: 50rem;
     }

@@ -49,6 +49,7 @@ class ProductController extends Controller
         $tipo_tela = $request->input('tipo_tela');
         $talles = $request->input('talles');
         $colores = $request->input('colores');
+        $precio = $request->input('precio');
 
         if ($request->hasFile('img')) {
             $image = $request->file('img');
@@ -56,7 +57,7 @@ class ProductController extends Controller
             Storage::disk('local')->put($filename, File::get($image));
         }
 
-        $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename);
+        $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename, 'precio'=>$precio);
 
         DB::table('productos')->insert($data);
 
@@ -108,6 +109,7 @@ class ProductController extends Controller
         $tipo_tela = $request->input('tipo_tela');
         $talles = $request->input('talles');
         $colores = $request->input('colores');
+        $precio = $request->input('precio');
         $id_art = $request->input('id_art');
         $prev_img = $request->input('prev_img');
 
@@ -121,7 +123,7 @@ class ProductController extends Controller
             $filename = $prev_img;
         }
 
-        $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename);
+        $data = array( 'articulo'=>$articulo, 'descripcion'=>$descripcion, 'tipo_tela'=>$tipo_tela, 'talles'=>$talles, 'colores'=>$colores, 'img'=>$filename, 'precio'=>$precio);
 
         DB::table('productos')->where([[ 'id_art', '=', $id_art ]])->update($data);
 
